@@ -7,15 +7,8 @@
 class PlayerGuesser
 {
 public:
-	PlayerGuesser(){};
-
 	// Returns the number of guesses needed to find the number
-	template <unsigned C> unsigned guess(numberHandler<C>);
-
-	virtual ~PlayerGuesser(){};
-
-private:
-	TurnResult queryNumber(int) const;
+	template <unsigned C> unsigned guess(numberHandler<C>) { return 69; };
 };
 
 #endif /* end of include guard: PLAYERGUESSER_H_CUHNAOKR */
