@@ -4,8 +4,8 @@
 #include <iostream> //cin,cout
 
 using namespace std; // So we don't have to worry about std::
-
-template <int N> 
+//cyka blyat idi na hui::
+template <int N>
 class bullsAndCows
 {
 public:
