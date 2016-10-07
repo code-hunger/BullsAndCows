@@ -22,7 +22,6 @@ template <unsigned C> struct Number
 		/// the digitPool(1).
 	}
 
-	template <unsigned C>
 	static Number generate()
 	{
 		bool occupied[10];
