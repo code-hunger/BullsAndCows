@@ -70,10 +70,17 @@ template <typename T> int simpleSearch(T arr[], T querVal, int size)
 }
 
 #include <array>
+#include <cmath>
 
-template <unsigned C> union Number {
-	uint8_t digits[C];
-	uint32_t number;
+template <unsigned C> struct Number {
+	short digits[C];
+	int getCopyOfNumber() {
+		int result, i = C, i10 = pow(10, C);
+		while (i10 /= 10 && --i) {
+			result += digits[i] * i10;
+		}
+		return result;
+	}
 };
 
 template <unsigned C>
