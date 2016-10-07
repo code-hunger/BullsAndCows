@@ -7,12 +7,12 @@
 class PlayerGuesser
 {
 public:
-	PlayerGuesser();
+	PlayerGuesser(){};
 
 	// Returns the number of guesses needed to find the number
 	template <unsigned C> unsigned guess(numberHandler<C>);
 
-	virtual ~PlayerGuesser();
+	virtual ~PlayerGuesser(){};
 
 private:
 	TurnResult queryNumber(int) const;

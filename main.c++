@@ -10,7 +10,7 @@ using std::cout;
 int main()
 {
 	PlayerGuesser player;
-	auto checks_number = player.guess(Number<4>::generateDigit());
+	auto checks_number = player.guess<4>({Number<4>::generate()});
 	cout << checks_number << '\n';
 	return 0;
 }

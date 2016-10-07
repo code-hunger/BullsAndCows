@@ -13,6 +13,8 @@
 template <unsigned C> class numberHandler // Rename this
 {
 public:
+	numberHandler(Number<C> number) : number(number) {}
+
 	TurnResult makeTurn(Number<C> number_to_check)
 	{
 		int i, j;

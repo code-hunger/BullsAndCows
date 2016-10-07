@@ -16,7 +16,7 @@ template <unsigned C> struct Number
 		return result;
 	}
 
-	static void generateDigit(bool digType = 1)
+	static short generateDigit(bool digType = 1)
 	{
 		///@param digType  Whether to return a digit directly(0) or its index in
 		/// the digitPool(1).
@@ -34,7 +34,7 @@ template <unsigned C> struct Number
 			occupied[digits[i]] = true;
 			for (j = 0; j < 10; j++) {
 				if (occupied[digits[i]]) digits[i]++;
-				clampInv(1, 9, &digits[i]);
+				clampInv(1, 9, digits[i]);
 			}
 		}
 	}
