@@ -1,7 +1,6 @@
 # Code blocks compilation files
 .exe
 .o
-.gitignore
 
 # Windows image file caches
 Thumbs.db
