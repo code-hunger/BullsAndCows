@@ -1,6 +1,7 @@
 # Code blocks compilation files
 .exe
 .o
+a.out
 
 # Windows image file caches
 Thumbs.db
