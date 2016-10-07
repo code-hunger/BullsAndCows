@@ -1,3 +1,6 @@
+#ifndef AUXFUNCTIONS_H_VUMFYUIM
+#define AUXFUNCTIONS_H_VUMFYUIM
+
 bool clamp(int minval, int maxval, int& clval)
 {
 	///@brief Keeps a value clamped within [minval,maxval].
@@ -64,3 +67,5 @@ template <typename T> int simpleSearch(T arr[], T querVal, int size)
 	}
 	return -1;
 }
+
+#endif /* end of include guard: AUXFUNCTIONS_H_VUMFYUIM */

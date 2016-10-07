@@ -1,8 +1,14 @@
+#ifndef NUMBERHADLER_H_ZJ17ABJN
+#define NUMBERHADLER_H_ZJ17ABJN
+
+#include "Number.h"
 #include "TurnResult.h"
-#include <cstdio>  //printf
-#include <cstdlib> //rand()
+#include "auxFunctions.h"
+
 #include <array>
 #include <cmath>
+#include <cstdio>  //printf
+#include <cstdlib> //rand()
 
 template <unsigned C> class numberHandler // Rename this
 {
@@ -73,3 +79,4 @@ private:
 	}
 };
 
+#endif /* end of include guard: NUMBERHADLER_H_ZJ17ABJN */
