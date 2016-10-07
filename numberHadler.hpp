@@ -1,9 +1,7 @@
 #include <cstdlib>   //rand()
 #include <cstdio>    //printf
 
-enum BCTurnResult {nothing = 0, none = 0, cow = 1, bull = 2};///The result of a Bulls&Cows turn can be nothing, a cow or a bull. For multiple cows or bulls - an array.
-
-const int MAXDIGITS = 4;/// Maximum digits should be 9!
+const int MAXDIGITS = 4;/// Maximum digits should not be higher than 9!
 
 bool clamp(int minval,int maxval,int *clval)
 {
@@ -45,56 +43,112 @@ bool clampInv(int minval,int maxval,int *clval)
     return false;
 }
 
-class numberHandler
+template<typename T>
+void clearArray(T arr[],T clearValue,int size)
 {
-public:
-    int number;             /// The number which we'll be guessing
-    int digits[MAXDIGITS];  /// The digits of the number, from left to right.
-    BCTurnResult turnResults[MAXDIGITS];
-
-    template<typename T>
-    void clearArray(T arr[],T clearValue,int siz){
     ///@brief Fills a 1D array with clearValue.
     ///@param arr  The array to be cleared.
     ///@param clearValue  The value that the array will be filled with.
     ///@param siz  The size of the array.
     int i;
-    for(i=0;i<siz;i++){
+    for(i=0; i<siz; i++)
+    {
         arr[i] = clearValue;
     }
     return ;
-    }
+}
 
-    template<typename T>
-    int simpleSearch(T arr[],T querVal,int siz){
+template<typename T>
+int simpleSearch(T arr[],T querVal,int size)
+{
+    ///@brief Searches arr for querVal.
+    ///@param arr  The array in which we search.
+    ///@param querVal  The value for which we will search.
+    ///@param size  The array size.
+    ///@return The index of the found element, or -1 if it hasn't been found.
     int i;
-    for(i=0;i<siz;i++){
-        if(arr[i]==querVal){
+    for(i=0; i<siz; i++)
+    {
+        if(arr[i]==querVal)
+        {
             return i;
         }
     }
     return -1;
+}
+
+int* extractDigits(int num){
+int i=0,res[MAXDIGITS];
+//To-do
+}
+
+class numberHandler//Rename this
+{
+public:
+
+    TurnResult makeTurn(int digs[]){
+        int i,j;
+        TurnResult res;
+        for(i=0;i<MAXDIGITS;i++){
+            if(digs[i]==digits[i]){
+                res.bulls++;
+            }else{
+                for(j=0;j<MAXDIGITS;j++){
+                    if(digs[i]==digits[j]){
+                        res.cows++;
+                        break;
+                    }
+                }
+            }
+        }
+        return res;
+    }
+
+    TurnResult makeTurn(int num){
+        int digs[MAXDIGITS];
+        digs = extractDigits(num);
+        return makeTurn(digs);
+    }
+
+    void setDigitPool(int digitCount,int digits[]){
+    digitPoolSize = digitCount;
+    digitPool = digits;
+    }
+
+private:
+    //Rename the following two variables!
+    int number;             /// The number which we'll be guessing
+    int digits[MAXDIGITS];  /// The digits of the number, from left to right.
+    int digitPoolSize = 9, digitPool[10];
+    BCTurnResult turnResults[MAXDIGITS];
+
+    void generateDigit(bool digType = 1){
+    ///@param digType  Whether to return a digit directly(0) or its index in the digitPool(1).
+
+
     }
 
     void generateNumber()
     {
-        bool occupied[9];
+        bool occupied[10];
         clearArray(digits,-1,MAXDIGITS);
-        clearArray(occupied,false,9);
+        clearArray(occupied,false,10);
         int i,j,k;
         for(i=0; i<MAXDIGITS; i++)
         {
-            digits[i] = rand()%9 + 1;
-            occupied[digits[i]-1] = true;
-            for(j=0; j<i; j++)
+            digits[i] = generateDigit();
+            occupied[digits[i]] = true;
+            for(j=0; j<10; j++)
             {
-                if(occupied)
-                }
+                if(occupied[digits[i]]) digits[i]++;
+                clampInv(1,9,&digits[i]);
+            }
         }
     }
 
     void printNumber(bool printSpaces = 1)
     {
+        ///@brief Prints the number.
         ///@param printType  Whether to print with(1) or without(0) spaces between digits.
         if (printSpaces)
         {
@@ -103,17 +157,11 @@ public:
         }
         else
         {
-            cout << number;
+            printf("%i",number);
         }
     }
 
-    void generateTurnResults(int )
 
-    int playerFunction(bool verbose = 1)
-    {
-        ///@brief A function that plays the game once. It is supposed to be very efficient.
-        ///@param verbose  Whether each turn will be displayed or not. This includes played numbers, cows & bulls, etcetera.
-    }
 
 };
 
