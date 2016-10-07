@@ -16,20 +16,20 @@ public:
 	TurnResult makeTurn(Number<C> number_to_check)
 	{
 		int i, j;
-		TurnResult res;
+		unsigned short bulls = 0, cows = 0;
 		for (i = 0; i < C; i++) {
 			if (number_to_check[i] == number.digits[i]) {
-				res.bulls++;
+				bulls++;
 			} else {
 				for (j = 0; j < C; j++) {
 					if (number_to_check[i] == number.digits[j]) {
-						res.cows++;
+						cows++;
 						break;
 					}
 				}
 			}
 		}
-		return res;
+		return {bulls, cows};
 	}
 
 	void setDigitPool(int digitCount, int digits[])
