@@ -2,6 +2,7 @@
 .exe
 .o
 a.out
+.ycm_extra_conf.py*
 
 # Windows image file caches
 Thumbs.db
