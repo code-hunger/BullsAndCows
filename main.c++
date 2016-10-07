@@ -5,11 +5,12 @@
 
 using namespace std; // So we don't have to worry about std::
 
+template <int N> 
 class bullsAndCows
 {
 public:
 	int m_number;    /// The number which we'll be guessing
-	int m_digits[4]; /// The digits of the number, from left to right.
+	int m_digits[N]; /// The digits of the number, from left to right.
 
 	void generateNumber()
 	{
