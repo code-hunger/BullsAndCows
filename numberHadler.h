@@ -57,6 +57,10 @@ public:
 		digitPool = digits;
 	}
 
+	void print(){
+        number.printDigits(digitPool);
+	}
+
 	// If number was guessed returns a pointer to the internal number, otherwise
 	// return nullptr
 	Number<C>* getNumber() { return numberGuessed ? &number : nullptr; }

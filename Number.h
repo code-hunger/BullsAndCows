@@ -5,12 +5,6 @@
 #include <cmath>
 #include <random>
 
-static short generateDigit(bool digType = 1)
-{
-	///@param digType  Whether to return a digit directly(0) or its index in
-	/// the digitPool(1).
-	return rand() % 9 + 1;
-}
 
 template <unsigned C> struct Number
 {
@@ -18,20 +12,21 @@ template <unsigned C> struct Number
 
 	Number()
 	{
-		bool occupied[10];
-		int digits[C];
 		clearArray(digits, -1, C);
-		clearArray(occupied, false, 10);
 		int i, j;
 		for (i = 0; i < C; i++) {
 			digits[i] = generateDigit();
-			occupied[digits[i]] = true;
-			for (j = 0; j < 10; j++) {
-				if (occupied[digits[i]]) digits[i]++;
-				clampInv(1, 9, digits[i]);
+			while(simpleSearch(digits,digits[i],i) != -1){
+                digits[i]++;
+                clampInv(0,C,&digits[i]);
 			}
 		}
 	}
+
+	static short generateDigit()
+    {
+        return rand() % C;
+    }
 
 	int getNumber()
 	{
@@ -42,14 +37,14 @@ template <unsigned C> struct Number
 		return result;
 	}
 
-	void print(bool printSpaces = true)
+	void printDigits(int digitPool[C],bool printSpaces = true)
 	{
 		///@brief Prints the number.
 		///@param printType  Whether to print with(1) or without(0) spaces
 		/// between digits.
 		int i;
 		for(i=0;i<C;i++){
-            printf("%i",digits[i]);
+            printf("%i",digitPool[digits[i]]);
             if(i<(C-1) && printSpaces){
                 printf(" ");
             }
