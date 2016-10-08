@@ -19,8 +19,7 @@ public:
 	Number()
 	{
 		clearArray(digits, -1, C);
-		int i, j;
-		for (i = 0; i < C; i++) {
+		for (int i = 0; i < C; i++) {
 			digits[i] = generateDigit();
 			while (simpleSearch(digits, digits[i], i) != -1) {
 				digits[i]++;
@@ -32,11 +31,9 @@ public:
 	Number(unsigned n)
 	{
 		assert(pow(10, C) > n && pow(10, C) < n * 10);
-		unsigned pow10 = 1, i = 0;
-		while (i < C) {
+
+		for (unsigned i = 0, pow10 = 1; i < C; ++i, pow10 *= 10) {
 			digits[C - i - 1] = static_cast<short unsigned>(n / pow10 % 10);
-			pow10 *= 10;
-			i++;
 		}
 	}
 
