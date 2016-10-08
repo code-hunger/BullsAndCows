@@ -26,14 +26,16 @@ public:
 
 	TurnResult makeTurn(Number<C> number_to_check)
 	{
-		fputs("Number was already guessed. Why another check?", stderr);
-		int i, j;
+		if (numberGuessed) {
+			fputs("Number was already guessed. Why another check?", stderr);
+		}
+
 		unsigned short bulls = 0, cows = 0;
-		for (i = 0; i < C; i++) {
-			if (number_to_check[i] == number.digits[i]) {
+		for (unsigned i = 0; i < C; i++) {
+			if (number_to_check[i] == number[i]) {
 				bulls++;
 			} else {
-				for (j = 0; j < C; j++) {
+				for (unsigned j = 0; j < C; j++) {
 					if (number_to_check[i] == number.digits[j]) {
 						cows++;
 						break;
@@ -47,6 +49,8 @@ public:
 		if (bulls == C) {
 			numberGuessed = true;
 		}
+
+		++turns_count;
 
 		return {bulls, cows};
 	}

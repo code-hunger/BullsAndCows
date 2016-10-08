@@ -11,6 +11,11 @@ public:
 	// Returns the number of guesses needed to find the number
 	template <unsigned C> numberHandler<C>&& guess(numberHandler<C>&& nh)
 	{
+		nh.makeTurn(1234);
+		nh.makeTurn(2345);
+		nh.makeTurn(3456);
+		nh.makeTurn(4567);
+		nh.makeTurn(5678);
 		return std::move(nh);
 	};
 };

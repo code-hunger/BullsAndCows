@@ -6,7 +6,7 @@
 int main()
 {
 	PlayerGuesser player;
-	auto nh = player.guess<4>({{}});
+	auto nh = player.guess<4>({5678});
 	if (nh.isGuessed()) {
 		nh.getNumber()->print();
 		printf("\nGuessed in %d turns.\n", nh.getTurnCount());

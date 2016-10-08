@@ -2,6 +2,7 @@
 #define NUMBER_H_J3V6CAR8
 
 #include "auxFunctions.h"
+#include <cassert>
 #include <cmath>
 #include <random>
 
@@ -33,6 +34,19 @@ template <unsigned C> struct Number
 		}
 	}
 
+	Number(int n)
+	{
+		assert(pow(10, C) > n  && pow(10, C) < n * 10);
+		int pow10 = 1, i = 0;
+		while (i < C) {
+			digits[C - i - 1] = (n / pow10) % 10;
+			pow10 *= 10;
+			i++;
+		}
+	}
+
+	short& operator[](unsigned i) { return digits[i]; }
+
 	int getNumber()
 	{
 		int result, i = C, i10 = pow(10, C);
@@ -48,11 +62,11 @@ template <unsigned C> struct Number
 		///@param printType  Whether to print with(1) or without(0) spaces
 		/// between digits.
 		int i;
-		for(i=0;i<C;i++){
-            printf("%i",digits[i]);
-            if(i<(C-1) && printSpaces){
-                printf(" ");
-            }
+		for (i = 0; i < C; i++) {
+			printf("%i", digits[i]);
+			if (i < (C - 1) && printSpaces) {
+				printf(" ");
+			}
 		}
 	}
 };
