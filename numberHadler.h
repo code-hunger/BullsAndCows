@@ -16,7 +16,6 @@ template <unsigned C> class numberHandler // Rename this
 	Number<C> number;
 	bool numberGuessed = false;
 	unsigned turns_count = 0;
-	int digitPoolSize = 9, digitPool[10];
 
 public:
 	numberHandler(Number<C> number) : number(number) {}
@@ -55,14 +54,9 @@ public:
 		return {bulls, cows};
 	}
 
-	void setDigitPool(int digitCount, int digits[])
+	void print()
 	{
-		digitPoolSize = digitCount;
-		digitPool = digits;
-	}
-
-	void print(){
-        number.printDigits(digitPool);
+		if (numberGuessed) number.print();
 	}
 
 	// If number was guessed returns a pointer to the internal number, otherwise

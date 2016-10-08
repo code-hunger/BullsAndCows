@@ -10,6 +10,7 @@
 template <unsigned C> struct Number
 {
 	short digits[C];
+	int digitPoolSize = 9, digitPool[10];
 
 	Number()
 	{
@@ -41,6 +42,12 @@ template <unsigned C> struct Number
         return rand() % C;
     }
 
+	void setDigitPool(int digitCount, int digits[])
+	{
+		digitPoolSize = digitCount;
+		digitPool = digits;
+	}
+
 	int getNumber()
 	{
 		int result, i = C, i10 = pow(10, C);
@@ -50,7 +57,7 @@ template <unsigned C> struct Number
 		return result;
 	}
 
-	void printDigits(int digitPool[],bool printSpaces = true)
+	void print(bool printSpaces = true)
 	{
 		///@brief Prints the number.
 		///@param printType  Whether to print with(1) or without(0) spaces
