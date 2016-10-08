@@ -9,7 +9,7 @@ int main()
 	auto nh = player.guess<4>({{}});
 	if (nh.isGuessed()) {
 		nh.getNumber()->print();
-		printf("\nGuessed in %d turns.\n", game_result.second);
+		printf("\nGuessed in %d turns.\n", nh.getTurnCount());
 	} else {
 		puts("Couldn't guess it!");
 	}

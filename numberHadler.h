@@ -17,6 +17,7 @@ public:
 	numberHandler(Number<C> number) : number(number) {}
 
 	bool isGuessed() const { return isGuessed; }
+	unsigned getTurnCount() const { return turns_count; }
 
 	TurnResult makeTurn(Number<C> number_to_check)
 	{
