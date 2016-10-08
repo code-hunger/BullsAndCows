@@ -13,6 +13,11 @@
 
 template <unsigned C> class numberHandler // Rename this
 {
+	Number<C> number;
+	bool numberGuessed = false;
+	unsigned turns_count = 0;
+	int digitPoolSize = 9, digitPool[10];
+
 public:
 	numberHandler(Number<C> number) : number(number) {}
 
@@ -55,12 +60,6 @@ public:
 	// If number was guessed returns a pointer to the internal number, otherwise
 	// return nullptr
 	Number<C>* getNumber() { return numberGuessed ? &number : nullptr; }
-
-private:
-	Number<C> number; /// The number which we'll be guessing
-	bool numberGuessed = false;
-	unsigned turns_count = 0;
-	int digitPoolSize = 9, digitPool[10];
 };
 
 #endif /* end of include guard: NUMBERHADLER_H_ZJ17ABJN */
