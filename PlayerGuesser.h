@@ -17,7 +17,7 @@ public:
 		nh.makeTurn(4567);
 		nh.makeTurn(5678);
 		return std::move(nh);
-	};
+	}
 };
 
 #endif /* end of include guard: PLAYERGUESSER_H_CUHNAOKR */

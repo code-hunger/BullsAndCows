@@ -11,7 +11,7 @@
 #include <cstdio>  //printf
 #include <cstdlib> //rand()
 
-template <unsigned C> class numberHandler // Rename this
+template <unsigned short C> class numberHandler // Rename this
 {
 	Number<C> number;
 	bool numberGuessed = false;

@@ -10,8 +10,8 @@
 
 template <unsigned short C, unsigned short D = 9> class Number
 {
-	std::array<unsigned short, C> digits;
-	std::array<unsigned short, D> digitPool;
+	std::array<unsigned short, C> digits{};
+	std::array<unsigned short, D> digitPool{};
 
 	short generateDigit() { return rand() % C; }
 
@@ -29,12 +29,12 @@ public:
 		}
 	}
 
-	Number(int n)
+	Number(unsigned n)
 	{
 		assert(pow(10, C) > n && pow(10, C) < n * 10);
-		int pow10 = 1, i = 0;
+		unsigned pow10 = 1, i = 0;
 		while (i < C) {
-			digits[C - i - 1] = (n / pow10) % 10;
+			digits[C - i - 1] = static_cast<short unsigned>(n / pow10 % 10);
 			pow10 *= 10;
 			i++;
 		}
@@ -80,8 +80,7 @@ public:
 		///@brief Prints the number.
 		///@param printType  Whether to print with(1) or without(0) spaces
 		/// between digits.
-		int i;
-		for (i = 0; i < C; i++) {
+		for (unsigned i = 0; i < C; i++) {
 			printf("%i", digitPool[digits[i]]);
 			if (i < (C - 1) && printSpaces) {
 				printf(" ");
