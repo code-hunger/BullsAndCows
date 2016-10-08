@@ -1,17 +1,21 @@
 #ifndef NUMBER_H_J3V6CAR8
 #define NUMBER_H_J3V6CAR8
 
-#include "auxFunctions.h"
 #include <array>
 #include <cassert>
 #include <cmath>
 #include <random>
 
-template <unsigned C, unsigned short D = 9> struct Number
+#include "TurnResult.h"
+
+template <unsigned short C, unsigned short D = 9> class Number
 {
-	unsigned short digits[C]{};
+	std::array<unsigned short, C> digits;
 	std::array<unsigned short, D> digitPool;
 
+	short generateDigit() { return rand() % C; }
+
+public:
 	Number()
 	{
 		clearArray(digits, -1, C);
@@ -38,8 +42,6 @@ template <unsigned C, unsigned short D = 9> struct Number
 
 	auto& operator[](unsigned i) { return digits[i]; }
 
-	static short generateDigit() { return rand() % C; }
-
 	void setDigitPool(std::array<short, C> digitPool)
 	{
 		this->digitPool = digitPool;
@@ -52,6 +54,25 @@ template <unsigned C, unsigned short D = 9> struct Number
 			result += digits[i] * i10;
 		}
 		return result;
+	}
+
+	TurnResult countBC(Number<C> guessNumber)
+	{
+		unsigned short bulls = 0, cows = 0;
+		for (unsigned short i = 0; i < C; i++) {
+			if (guessNumber.digits[i] == this->digits[i]) {
+				bulls++;
+			} else {
+				for (unsigned j = 0; j < C; j++) {
+					if (guessNumber.digits[i] == this->digits[i]) {
+						cows++;
+						break;
+					}
+				}
+			}
+		}
+
+		return {bulls, cows};
 	}
 
 	void print(bool printSpaces = true)

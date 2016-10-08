@@ -1,16 +1,15 @@
 #ifndef AUXFUNCTIONS_H_VUMFYUIM
 #define AUXFUNCTIONS_H_VUMFYUIM
 
-#include "Number.h"
 #include "TurnResult.h"
 
+/// @brief Keeps a value clamped within [minval,maxval].
+/// @param minval  The left bracket, smallest value.
+/// @param maxval  The right bracket, largest value.
+/// @param clval  Pointer to the number to be clamped.
+/// @return Whether the number was clamped(1) or not(0).
 bool clamp(int minval, int maxval, int& clval)
 {
-	///@brief Keeps a value clamped within [minval,maxval].
-	///@param minval  The left bracket, smallest value.
-	///@param maxval  The right bracket, largest value.
-	///@param clval  Pointer to the number to be clamped.
-	///@return Whether the number was clamped(1) or not(0).
 	if (clval > maxval) {
 		clval = maxval;
 		return true;
@@ -22,15 +21,15 @@ bool clamp(int minval, int maxval, int& clval)
 	return false;
 }
 
+///@brief Keeps a value withing [minval,maxval], but spins it around to the
+/// opposite end if it gets outside the bracket. For example:   [2,5] 6 will
+/// become 2, 1 will become 5.
+///@param minval  The left bracket, smallest value.
+///@param maxval  The right bracket, largest value.
+///@param clval  Pointer to the number to be clamped.
+///@return Whether the number was clamped(1) or not(0).
 bool clampInv(int minval, int maxval, int& clval)
 {
-	///@brief Keeps a value withing [minval,maxval], but spins it around to the
-	/// opposite end if it gets outside the bracket. For example:   [2,5] 6 will
-	/// become 2, 1 will become 5.
-	///@param minval  The left bracket, smallest value.
-	///@param maxval  The right bracket, largest value.
-	///@param clval  Pointer to the number to be clamped.
-	///@return Whether the number was clamped(1) or not(0).
 	if (clval > maxval) {
 		clval = minval;
 		return true;
@@ -42,12 +41,12 @@ bool clampInv(int minval, int maxval, int& clval)
 	return false;
 }
 
+///@brief Fills a 1D array with clearValue.
+///@param arr  The array to be cleared.
+///@param clearValue  The value that the array will be filled with.
+///@param siz  The size of the array.
 template <typename T> void clearArray(T arr[], T clearValue, int size)
 {
-	///@brief Fills a 1D array with clearValue.
-	///@param arr  The array to be cleared.
-	///@param clearValue  The value that the array will be filled with.
-	///@param siz  The size of the array.
 	int i;
 	for (i = 0; i < size; i++) {
 		arr[i] = clearValue;
@@ -55,15 +54,15 @@ template <typename T> void clearArray(T arr[], T clearValue, int size)
 	return;
 }
 
+///@brief Searches arr for querVal.
+///@param arr  The array in which we search.
+///@param querVal  The value for which we will search.
+///@param size  The array size.
+///@return The index of the found element, or -1 if it hasn't been found.
 template <typename T> int simpleSearch(T arr[], T querVal, int size)
 {
-	///@brief Searches arr for querVal.
-	///@param arr  The array in which we search.
-	///@param querVal  The value for which we will search.
-	///@param size  The array size.
-	///@return The index of the found element, or -1 if it hasn't been found.
-	if(size<=0){
-        return -1;
+	if (size <= 0) {
+		return -1;
 	}
 	int i;
 	for (i = 0; i < size; i++) {
@@ -74,21 +73,4 @@ template <typename T> int simpleSearch(T arr[], T querVal, int size)
 	return -1;
 }
 
-template <unsigned C> TurnResult countBC(Number<C> guessNumber, Number<C> trueNumber){
-    unsigned short bulls=0,cows=0;
-    for (unsigned short i = 0; i < C; i++) {
-        if (guessNumber.digits[i] == trueNumber.digits[i]) {
-            bulls++;
-        } else {
-            for (unsigned j = 0; j < C; j++) {
-                if (guessNumber.digits[i] == trueNumber.digits[i]) {
-                    cows++;
-                    break;
-                }
-            }
-        }
-    }
-
-    return {bulls,cows};
-}
 #endif /* end of include guard: AUXFUNCTIONS_H_VUMFYUIM */

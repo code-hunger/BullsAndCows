@@ -29,7 +29,7 @@ public:
 			fputs("Number was already guessed. Why another check?", stderr);
 		}
 
-		TurnResult res = countBC(number_to_check,number);
+		TurnResult res = number.countBC(number_to_check);
 
 		assert(res.bulls + res.cows <= C);
 
