@@ -47,10 +47,12 @@ template <unsigned C> struct Number
 		///@brief Prints the number.
 		///@param printType  Whether to print with(1) or without(0) spaces
 		/// between digits.
-		if (printSpaces) {
-			printf("%i %i %i %i", digits[0], digits[1], digits[2], digits[3]);
-		} else {
-			printf("%i", this);
+		int i;
+		for(i=0;i<C;i++){
+            printf("%i",digits[i]);
+            if(i<(C-1) && printSpaces){
+                printf(" ");
+            }
 		}
 	}
 };
