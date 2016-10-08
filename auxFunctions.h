@@ -59,14 +59,11 @@ template <typename T> void clearArray(T arr[], T clearValue, int size)
 ///@param querVal  The value for which we will search.
 ///@param size  The array size.
 ///@return The index of the found element, or -1 if it hasn't been found.
-template <typename T> int simpleSearch(T arr[], T querVal, int size)
+template <typename T, unsigned C>
+int simpleSearch(std::array<T, C> arr, T querVal)
 {
-	if (size <= 0) {
-		return -1;
-	}
-	int i;
-	for (i = 0; i < size; i++) {
-		if (arr[i] == querVal) {
+	for (const T& i : arr) {
+		if (i == querVal) {
 			return i;
 		}
 	}

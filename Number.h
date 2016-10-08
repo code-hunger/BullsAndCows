@@ -1,6 +1,7 @@
 #ifndef NUMBER_H_J3V6CAR8
 #define NUMBER_H_J3V6CAR8
 
+#include <algorithm>
 #include <array>
 #include <cassert>
 #include <cmath>
@@ -21,7 +22,7 @@ public:
 		clearArray(digits, -1, C);
 		for (int i = 0; i < C; i++) {
 			digits[i] = generateDigit();
-			while (simpleSearch(digits, digits[i], i) != -1) {
+			while (std::find(digits, digits[i]) != digits[i]) {
 				digits[i]++;
 				clampInv(0, C, &digits[i]);
 			}
