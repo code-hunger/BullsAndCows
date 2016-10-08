@@ -16,7 +16,7 @@ template <unsigned C> class numberHandler // Rename this
 public:
 	numberHandler(Number<C> number) : number(number) {}
 
-	bool isGuessed() const { return isGuessed; }
+	bool isGuessed() const { return numberGuessed; }
 	unsigned getTurnCount() const { return turns_count; }
 
 	TurnResult makeTurn(Number<C> number_to_check)
