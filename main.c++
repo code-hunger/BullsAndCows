@@ -8,7 +8,7 @@ int main()
 	PlayerGuesser player;
 	auto nh = player.guess<4>({5678});
 	if (nh.isGuessed()) {
-		nh.getNumber()->print();
+		nh.print();
 		printf("\nGuessed in %d turns.\n", nh.getTurnCount());
 	} else {
 		puts("Couldn't guess it!");
