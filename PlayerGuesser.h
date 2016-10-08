@@ -9,7 +9,7 @@ class PlayerGuesser
 {
 public:
 	// Returns the number of guesses needed to find the number
-	template <unsigned C> numberHandler<C>&& guess(numberHandler<C>&& nh)
+	template <unsigned C> NumberHandler<C>&& guess(NumberHandler<C>&& nh)
 	{
 		nh.makeTurn(1234);
 		nh.makeTurn(2345);

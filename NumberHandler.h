@@ -11,14 +11,14 @@
 #include <cstdio>  //printf
 #include <cstdlib> //rand()
 
-template <unsigned short C> class numberHandler // Rename this
+template <unsigned short C> class NumberHandler // Rename this
 {
 	Number<C> number;
 	bool numberGuessed = false;
 	unsigned turns_count = 0;
 
 public:
-	numberHandler(Number<C> number) : number(number) {}
+	NumberHandler(Number<C> number) : number(number) {}
 
 	bool isGuessed() const { return numberGuessed; }
 	unsigned getTurnCount() const { return turns_count; }
