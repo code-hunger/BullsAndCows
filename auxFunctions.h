@@ -1,6 +1,9 @@
 #ifndef AUXFUNCTIONS_H_VUMFYUIM
 #define AUXFUNCTIONS_H_VUMFYUIM
 
+#include "Number.h"
+#include "TurnResult.h"
+
 bool clamp(int minval, int maxval, int& clval)
 {
 	///@brief Keeps a value clamped within [minval,maxval].
@@ -71,4 +74,21 @@ template <typename T> int simpleSearch(T arr[], T querVal, int size)
 	return -1;
 }
 
+template <unsigned C> TurnResult countBC(Number<C> guessNumber, Number<C> trueNumber){
+    unsigned short bulls=0,cows=0;
+    for (unsigned short i = 0; i < C; i++) {
+        if (guessNumber.digits[i] == trueNumber.digits[i]) {
+            bulls++;
+        } else {
+            for (unsigned j = 0; j < C; j++) {
+                if (guessNumber.digits[i] == trueNumber.digits[i]) {
+                    cows++;
+                    break;
+                }
+            }
+        }
+    }
+
+    return {bulls,cows};
+}
 #endif /* end of include guard: AUXFUNCTIONS_H_VUMFYUIM */

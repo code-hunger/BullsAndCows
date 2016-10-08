@@ -29,29 +29,17 @@ public:
 			fputs("Number was already guessed. Why another check?", stderr);
 		}
 
-		unsigned short bulls = 0, cows = 0;
-		for (unsigned short i = 0; i < C; i++) {
-			if (number_to_check[i] == number[i]) {
-				bulls++;
-			} else {
-				for (unsigned j = 0; j < C; j++) {
-					if (number_to_check[i] == number.digits[j]) {
-						cows++;
-						break;
-					}
-				}
-			}
-		}
+		TurnResult res = countBC(number_to_check,number);
 
-		assert(bulls + cows <= C);
+		assert(res.bulls + res.cows <= C);
 
-		if (bulls == C) {
+		if (res.bulls == C) {
 			numberGuessed = true;
 		}
 
 		++turns_count;
 
-		return {bulls, cows};
+		return res;
 	}
 
 	void print()
