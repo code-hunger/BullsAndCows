@@ -1,16 +1,17 @@
-#include <iostream>
+#include <cstdio>
 
-#include "PlayerGuesser.h"
 #include "Number.h"
-
-// @TODO: Include numberHandler
-
-using std::cout;
+#include "PlayerGuesser.h"
 
 int main()
 {
 	PlayerGuesser player;
-	auto checks_number = player.guess<4>({Number<4>::generate()});
-	cout << checks_number << '\n';
+	auto nh = player.guess<4>({{}});
+	if (nh.isGuessed()) {
+		nh.getNumber()->print();
+		printf("\nGuessed in %d turns.\n", game_result.second);
+	} else {
+		puts("Couldn't guess it!");
+	}
 	return 0;
 }

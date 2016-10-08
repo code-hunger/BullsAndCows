@@ -3,26 +3,20 @@
 
 #include "auxFunctions.h"
 #include <cmath>
+#include <random>
+
+static short generateDigit(bool digType = 1)
+{
+	///@param digType  Whether to return a digit directly(0) or its index in
+	/// the digitPool(1).
+	return rand() % 9 + 1;
+}
 
 template <unsigned C> struct Number
 {
 	short digits[C];
-	int getCopyOfNumber()
-	{
-		int result, i = C, i10 = pow(10, C);
-		while (i10 /= 10 && --i) {
-			result += digits[i] * i10;
-		}
-		return result;
-	}
 
-	static short generateDigit(bool digType = 1)
-	{
-		///@param digType  Whether to return a digit directly(0) or its index in
-		/// the digitPool(1).
-	}
-
-	static Number generate()
+	Number()
 	{
 		bool occupied[10];
 		int digits[C];
@@ -39,7 +33,16 @@ template <unsigned C> struct Number
 		}
 	}
 
-	void printNumber(bool printSpaces = 1)
+	int getNumber()
+	{
+		int result, i = C, i10 = pow(10, C);
+		while (i10 /= 10 && --i) {
+			result += digits[i] * i10;
+		}
+		return result;
+	}
+
+	void print(bool printSpaces = true)
 	{
 		///@brief Prints the number.
 		///@param printType  Whether to print with(1) or without(0) spaces
@@ -47,7 +50,7 @@ template <unsigned C> struct Number
 		if (printSpaces) {
 			printf("%i %i %i %i", digits[0], digits[1], digits[2], digits[3]);
 		} else {
-			printf("%i", getCopyOfNumber());
+			printf("%i", this);
 		}
 	}
 };
