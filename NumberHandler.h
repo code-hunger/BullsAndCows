@@ -30,7 +30,7 @@ public:
 		}
 
 		unsigned short bulls = 0, cows = 0;
-		for (unsigned i = 0; i < C; i++) {
+		for (unsigned short i = 0; i < C; i++) {
 			if (number_to_check[i] == number[i]) {
 				bulls++;
 			} else {

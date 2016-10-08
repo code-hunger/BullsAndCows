@@ -2,15 +2,15 @@
 #define NUMBER_H_J3V6CAR8
 
 #include "auxFunctions.h"
+#include <array>
 #include <cassert>
 #include <cmath>
 #include <random>
 
-
-template <unsigned C> struct Number
+template <unsigned C, unsigned short D = 9> struct Number
 {
-	short digits[C];
-	int digitPoolSize = 9, digitPool[10];
+	unsigned short digits[C]{};
+	std::array<unsigned short, D> digitPool;
 
 	Number()
 	{
@@ -18,16 +18,16 @@ template <unsigned C> struct Number
 		int i, j;
 		for (i = 0; i < C; i++) {
 			digits[i] = generateDigit();
-			while(simpleSearch(digits,digits[i],i) != -1){
-                digits[i]++;
-                clampInv(0,C,&digits[i]);
+			while (simpleSearch(digits, digits[i], i) != -1) {
+				digits[i]++;
+				clampInv(0, C, &digits[i]);
 			}
 		}
 	}
 
 	Number(int n)
 	{
-		assert(pow(10, C) > n  && pow(10, C) < n * 10);
+		assert(pow(10, C) > n && pow(10, C) < n * 10);
 		int pow10 = 1, i = 0;
 		while (i < C) {
 			digits[C - i - 1] = (n / pow10) % 10;
@@ -36,16 +36,13 @@ template <unsigned C> struct Number
 		}
 	}
 
-	short& operator[](unsigned i) { return digits[i]; }
-	static short generateDigit()
-    {
-        return rand() % C;
-    }
+	auto& operator[](unsigned i) { return digits[i]; }
 
-	void setDigitPool(int digitCount, int digits[])
+	static short generateDigit() { return rand() % C; }
+
+	void setDigitPool(std::array<short, C> digitPool)
 	{
-		digitPoolSize = digitCount;
-		digitPool = digits;
+		this->digitPool = digitPool;
 	}
 
 	int getNumber()
@@ -63,11 +60,11 @@ template <unsigned C> struct Number
 		///@param printType  Whether to print with(1) or without(0) spaces
 		/// between digits.
 		int i;
-		for(i=0;i<C;i++){
-            printf("%i",digitPool[digits[i]]);
-            if(i<(C-1) && printSpaces){
-                printf(" ");
-            }
+		for (i = 0; i < C; i++) {
+			printf("%i", digitPool[digits[i]]);
+			if (i < (C - 1) && printSpaces) {
+				printf(" ");
+			}
 		}
 	}
 };
